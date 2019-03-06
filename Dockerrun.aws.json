@@ -10,7 +10,7 @@
     },
     {
       "name": "server",
-      "image": "bing444/server",
+      "image": "bing444/multi-server",
       "hostname": "api",
       "essential": false,
       "memory": 128
