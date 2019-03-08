@@ -2,6 +2,9 @@ sudo: required
 services:
   - docker
 
+node_js:
+  - "11.10.1"
+
 before_install:
   - docker build -t bing444/react-test -f ./client/Dockerfile.dev ./client
 
@@ -21,16 +24,3 @@ after_success:
   - docker push bing444/multi-server
   - docker push bing444/multi-nginx
   - docker push bing444/multi-worker
-
-deploy:
-  provider: elasticbeanstalk
-  region: eu-west-1
-  app: multi-docker
-  env: MultiDocker-env
-  bucket_name: elasticbeanstalk-eu-west-1-427072939782
-  bucket_path: docker-multi
-  on:
-    branch: master
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key:
-    secure: $AWS_SECRET_KEY
