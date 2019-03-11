@@ -39,9 +39,12 @@ export default class Fib extends Component {
   };
 
   renderSeenIndexes() {
-    return Array.from(
-      new Set(this.state.seenIndexes.map(({ number }) => number))
-    ).join(", ");
+    if (typeof this.state.seenIndexes.map === "function") {
+      return Array.from(
+        new Set(this.state.seenIndexes.map(({ number }) => number))
+      ).join(", ");
+    }
+    return null;
   }
 
   renderValues() {
